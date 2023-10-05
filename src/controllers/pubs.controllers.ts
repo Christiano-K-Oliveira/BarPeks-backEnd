@@ -12,7 +12,6 @@ const createPubController = async (req: Request, res: Response): Promise<Respons
     return res.status(201).json(newPub)
 }
 
-
 const listPubUniqueController = async (req:Request, res: Response): Promise<Response> => {
 	const pubId: number = parseInt(req.params.id);
 	const pub = await listPubUniqueService(pubId);
