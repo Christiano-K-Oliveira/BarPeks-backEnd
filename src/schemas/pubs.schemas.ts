@@ -41,4 +41,14 @@ const pubsSchemaResponse = z.object({
     photo_url: z.string().nullish(),
 })
 
-export { pubsSchemaRequest, pubsSchemaResponse, pubsUpdateSchemaRequest }
+const resetPasswordPubSchema = z.object({
+    reset_password: z.string()
+})
+
+
+export { 
+    pubsSchemaRequest, 
+    pubsSchemaResponse, 
+    pubsUpdateSchemaRequest, 
+    resetPasswordPubSchema,
+}

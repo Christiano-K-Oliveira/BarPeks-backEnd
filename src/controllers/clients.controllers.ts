@@ -4,6 +4,8 @@ import { createClientService } from "../services/clients/createClient.service"
 import { listClientUniqueService } from '../services/clients/listClientUnique.service';
 import { updateClientService } from '../services/clients/updateClient.service';
 import { deleteClientService } from '../services/clients/deleteClient.service';
+import { sendEmailResetPasswordService } from '../services/clients/sendEmailResetPassword.service'
+import { resetPasswordService } from '../services/clients/resetPassword.service';
 
 const createClientController = async (req: Request, res: Response): Promise<Response> => {
     const clientData: iClientRequest = req.body
@@ -33,9 +35,33 @@ const deleteClientController = async (req: Request, res: Response): Promise<Resp
     return res.status(204).send()
 }
 
+
+const sendEmailResetPasswordController = async (req: Request, res: Response) : Promise<Response> => {
+    const { email } = req.body;
+
+    await sendEmailResetPasswordService(email)
+
+    return res.status(200).json({
+        message: 'Token enviado'
+    })
+}
+
+const resetPasswordController = async (req: Request, res: Response): Promise<Response> => {
+    const { password } = req.body
+    const { token } = req.params
+
+    await resetPasswordService(password, token)
+
+    return res.status(200).json({
+        message: 'Senha atualizada com sucesso'
+    })
+}
+
 export {
     createClientController,
     listClientUniqueController,
     updateClientController,
-    deleteClientController
+    deleteClientController,
+    sendEmailResetPasswordController,
+    resetPasswordController
 }
