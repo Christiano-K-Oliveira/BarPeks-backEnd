@@ -18,17 +18,19 @@ export const resetPasswordService = async (password: string, resetToken: string)
     const pubDate = pub.expires_reset_password.split('/')
     const currentDate = today.split('/')
     
-    if(+pubDate[0] - +currentDate[0] < 0){
+    if(+pubDate[2] - +currentDate[2] < 0){
         throw new AppError('Token expirado')
     }
-
+    
     if(+pubDate[1] - +currentDate[1] < 0){
         throw new AppError('Token expirado')
     }
 
-    if(+pubDate[2] - +currentDate[2] < 0){
+    if(+pubDate[0] - +currentDate[0] < 0){
         throw new AppError('Token expirado')
     }
+
+
 
     if(!pub){
         throw new AppError('Bar não encontrado', 404)
