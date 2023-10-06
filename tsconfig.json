@@ -15,10 +15,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strictPropertyInitialization": false,
     "resolveJsonModule": true
   },
-  "include": ["src", "app.ts"],
+  "include": ["src", "app.ts", "multer.config.ts"],
   "exclude": ["node_modules"]
 }

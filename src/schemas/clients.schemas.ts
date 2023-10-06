@@ -8,7 +8,6 @@ const clientsSchemaRequest = z.object({
     password: z.string().max(120),
     reset_password: z.string().nullish(),
     telephone: z.string().min(11).max(11),
-    photo_url: z.string().nullish()
 })
 
 const clientsUpdateSchemaRequest = z.object({
@@ -19,7 +18,6 @@ const clientsUpdateSchemaRequest = z.object({
     password: z.string().max(120).optional(),
     reset_password: z.string().nullish().optional(),
     telephone: z.string().min(11).max(11).optional(),
-    photo_url: z.string().nullish().optional()
 })
 
 const clientsSchemaResponse = z.object({

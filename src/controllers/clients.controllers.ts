@@ -6,6 +6,7 @@ import { updateClientService } from '../services/clients/updateClient.service';
 import { deleteClientService } from '../services/clients/deleteClient.service';
 import { sendEmailResetPasswordService } from '../services/clients/sendEmailResetPassword.service'
 import { resetPasswordService } from '../services/clients/resetPassword.service';
+import { uploadClientService } from '../services/clients/uploadClient.service';
 
 const createClientController = async (req: Request, res: Response): Promise<Response> => {
     const clientData: iClientRequest = req.body
@@ -57,11 +58,21 @@ const resetPasswordController = async (req: Request, res: Response): Promise<Res
     })
 }
 
+const uploadClientController = async (req: Request, res: Response): Promise<Response> => {
+    const clientId: number = parseInt(req.params.id)
+    const photo: Express.Multer.File | undefined = req.file
+
+    const client = await uploadClientService(clientId, photo)
+
+    return res.status(200).json(client)
+}
+
 export {
     createClientController,
     listClientUniqueController,
     updateClientController,
     deleteClientController,
     sendEmailResetPasswordController,
-    resetPasswordController
+    resetPasswordController,
+    uploadClientController
 }

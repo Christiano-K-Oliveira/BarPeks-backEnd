@@ -5,6 +5,7 @@ import { listProductUniqueService } from '../services/products/listProductUnique
 import { listProductsService } from '../services/products/listProducts.service';
 import { updateProductService } from '../services/products/updateProduct.service';
 import { deleteProductService } from '../services/products/deleteProduct.service';
+import { uploadProductService } from '../services/products/uploadProduct.service';
 
 const createProductController = async (req: Request, res: Response): Promise<Response> => {
     const pubId = parseInt(res.locals.usuarioId);
@@ -45,10 +46,20 @@ const deleteProductController = async (req: Request, res: Response): Promise<Res
     return res.status(204).send()
 }
 
+const uploadProductController = async (req: Request, res: Response): Promise<Response> => {
+    const productId: number = parseInt(req.params.id)
+    const photo: Express.Multer.File | undefined = req.file
+
+    const product = await uploadProductService(productId, photo)
+
+    return res.status(200).json(product)
+}
+
 export {
     createProductController,
     listProductsController,
     listProductUniqueController,
     updateProductController,
-    deleteProductController
+    deleteProductController,
+    uploadProductController
 }
