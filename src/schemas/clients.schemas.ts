@@ -32,4 +32,8 @@ const clientsSchemaResponse = z.object({
     photo_url: z.string().nullish()
 })
 
-export { clientsSchemaRequest, clientsSchemaResponse, clientsUpdateSchemaRequest }
+const resetPasswordClientSchema = z.object({
+    reset_password: z.string()
+})
+
+export { clientsSchemaRequest, clientsSchemaResponse, clientsUpdateSchemaRequest, resetPasswordClientSchema }

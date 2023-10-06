@@ -42,6 +42,9 @@ class Pub {
     @Column({ type: 'boolean', default: true })
     is_active: boolean;
 
+    @Column({ type: 'varchar', nullable: true })
+    expires_reset_password: string | null;
+
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {

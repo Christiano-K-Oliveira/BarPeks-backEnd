@@ -30,6 +30,9 @@ class Client {
     @Column({ type: 'varchar', nullable: true })
     photo_url: string | null | undefined;
 
+    @Column({ type: 'varchar', nullable: true })
+    expires_reset_password: string | null;
+
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {
