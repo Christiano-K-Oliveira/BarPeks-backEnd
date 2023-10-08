@@ -7,9 +7,12 @@ import clientsRoutes from "./routes/clients.routes";
 import productsRoutes from "./routes/products.routes";
 import { clientRegisteredClientsRoutes, pubRegisteredClientsRoutes } from "./routes/registeredClients.routes";
 import { clientRescueHistoryRoutes, pubRescueHistoryRoutes } from "./routes/rescueHistory.routes";
+import cors from "cors"
+
 
 const app: Application = express();
 app.use(express.json());
+app.use(cors())
 
 app.use("/pubs", pubsRoutes);
 app.use("", loginRoutes);
