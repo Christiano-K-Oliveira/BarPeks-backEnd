@@ -5,6 +5,7 @@ import { createClientController, deleteClientController, listClientUniqueControl
 import ensureAuthIsValidMiddleware from "../middlewares/ensureAuthIsValid.middleware";
 import { ensureClientAccount } from "../middlewares/ensureAccount.middleware";
 
+const upload = require('../middlewares/uploadPhoto.middleware')
 const clientsRoutes: Router = Router();
 
 clientsRoutes.post('', validateData(clientsSchemaRequest), createClientController)
@@ -13,6 +14,6 @@ clientsRoutes.patch('/:id', ensureAuthIsValidMiddleware, ensureClientAccount, va
 clientsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensureClientAccount, deleteClientController)
 clientsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)
 clientsRoutes.patch('/recuperar-senha/:token', resetPasswordController)
-clientsRoutes.patch('/upload/:id', ensureAuthIsValidMiddleware, uploadClientController)
+clientsRoutes.patch('/upload/:id', (upload.single('file')), uploadClientController)
 
 export default clientsRoutes

@@ -12,6 +12,6 @@ productsRoutes.get('', ensureAuthIsValidMiddleware, listProductsController)
 productsRoutes.get('/:id', ensureAuthIsValidMiddleware, listProductUniqueController)
 productsRoutes.patch('/:id', ensureAuthIsValidMiddleware, validateData(productsUpdateSchemaRequest), updateProductController)
 productsRoutes.delete('/:id', ensureAuthIsValidMiddleware, deleteProductController)
-productsRoutes.patch('/upload/:id', ensureAuthIsValidMiddleware, (upload.single('file')), uploadProductController)
+productsRoutes.patch('/upload/:id', (upload.single('file')), uploadProductController)
 
 export default productsRoutes

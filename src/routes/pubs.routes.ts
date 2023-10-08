@@ -14,6 +14,6 @@ pubsRoutes.patch('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, validate
 pubsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, deletePubController)
 pubsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)
 pubsRoutes.patch('/recuperar-senha/:token', resetPasswordController)
-pubsRoutes.patch('/upload/:id', ensureAuthIsValidMiddleware, (upload.single('file')), uploadPubController)
+pubsRoutes.patch('/upload/:id', (upload.single('file')), uploadPubController)
 
 export default pubsRoutes
