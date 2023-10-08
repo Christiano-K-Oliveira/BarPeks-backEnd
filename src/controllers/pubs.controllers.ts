@@ -6,6 +6,7 @@ import { updatePubService } from '../services/pubs/updatePub.service';
 import { deletePubService } from '../services/pubs/deletePub.service';
 import { sendEmailResetPasswordService } from '../services/pubs/senEmailResetPassword.service';
 import { resetPasswordService } from '../services/pubs/resetPassword.service';
+import { uploadPubService } from '../services/pubs/uploadPub.service';
 
 const createPubController = async (req: Request, res: Response): Promise<Response> => {
     const pubData: iPubRequest = req.body
@@ -56,11 +57,21 @@ const resetPasswordController = async (req: Request, res: Response): Promise<Res
     })
 }
 
+const uploadPubController = async (req: Request, res: Response): Promise<Response> => {
+    const pubId: number = parseInt(req.params.id)
+    const photo: Express.Multer.File | undefined = req.file
+
+    const pub = await uploadPubService(pubId, photo)
+
+    return res.status(200).json(pub)
+}
+
 export {
     createPubController,
     listPubUniqueController,
     updatePubController,
     deletePubController,
     sendEmailResetPasswordController,
-    resetPasswordController
+    resetPasswordController,
+    uploadPubController
 }

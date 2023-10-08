@@ -30,8 +30,6 @@ export const resetPasswordService = async (password: string, resetToken: string)
         throw new AppError('Token expirado')
     }
 
-
-
     if(!pub){
         throw new AppError('Bar não encontrado', 404)
     }

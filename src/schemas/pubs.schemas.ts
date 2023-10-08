@@ -11,7 +11,6 @@ const pubsSchemaRequest = z.object({
     state: z.string().max(60),
     city: z.string().max(60),
     postal_code: z.string().max(8),
-    photo_url: z.string().nullish(),
     is_active: z.boolean().default(true)
 })
 
@@ -25,7 +24,6 @@ const pubsUpdateSchemaRequest = z.object({
     state: z.string().max(60).optional(),
     city: z.string().max(60).optional(),
     postal_code: z.string().max(8).optional(),
-    photo_url: z.string().optional(),
 })
 
 const pubsSchemaResponse = z.object({
