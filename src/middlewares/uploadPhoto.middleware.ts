@@ -5,7 +5,7 @@ import { AppError } from '../errors'
 module.exports = (multer({
     storage: multer.diskStorage({
         destination: (req, file, callback) => {
-            callback(null, path.resolve('./tmp'))
+            callback(null, path.resolve('./src/tmp'))
         },
         filename: (_, file, callback) => {
             const time = new Date().getTime()
@@ -21,7 +21,7 @@ module.exports = (multer({
         }
         else {
             throw new AppError('Somente nos formatos jpeg e png são permitidos', 400)
-            callback(null, false)
+            // callback(null, false)
         }
     }
 }))

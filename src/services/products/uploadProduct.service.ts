@@ -5,6 +5,7 @@ import { iProductResponse } from "../../interfaces/products.interfaces"
 import { AppError } from "../../errors";
 import { v2 as cloudinary } from 'cloudinary'
 import { updateProductPhotoService } from "./updateProduct.service";
+import { unlink } from "node:fs"
 
 export const uploadProductService = async (id: number, photo: Express.Multer.File | undefined): Promise<iProductResponse> => {
     cloudinary.config({
@@ -33,6 +34,12 @@ export const uploadProductService = async (id: number, photo: Express.Multer.Fil
     )
     
     const updateProduct = await updateProductPhotoService(id, { photo_url: upload.secure_url }, product.pub.id)
+
+    unlink(photo.path, (error) => {
+        if(error){
+            console.log(error)
+        }
+    })
 
     return updateProduct
 }

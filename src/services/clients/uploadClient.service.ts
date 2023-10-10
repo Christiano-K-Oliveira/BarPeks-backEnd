@@ -5,6 +5,7 @@ import { v2 as cloudinary } from 'cloudinary'
 import { iClientResponse } from "../../interfaces/clients.interfaces";
 import { Client } from "../../entities";
 import { updateClientService } from "./updateClient.service";
+import { unlink } from "node:fs"
 
 export const uploadClientService = async (id: number, photo: Express.Multer.File | undefined): Promise<iClientResponse> => {
     cloudinary.config({
@@ -33,6 +34,12 @@ export const uploadClientService = async (id: number, photo: Express.Multer.File
     )
     
     const updateClient = await updateClientService(id, { photo_url: upload.secure_url })
+
+    unlink(photo.path, (error) => {
+        if(error){
+            console.log(error)
+        }
+    })
 
     return updateClient
 }

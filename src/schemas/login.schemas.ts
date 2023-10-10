@@ -5,4 +5,8 @@ const loginSchema = z.object({
     password: z.string()
 })
 
-export { loginSchema }
+const loginEmailSchema = z.object({
+    email: z.string()
+})
+
+export { loginSchema, loginEmailSchema }

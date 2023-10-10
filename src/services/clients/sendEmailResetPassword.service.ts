@@ -6,7 +6,7 @@ import { randomUUID } from "node:crypto";
 import { updateResetPasswordClientService } from "./updateClient.service";
 import { emailService } from "../../utils/sendEmail.utils";
 
-export const sendEmailResetPasswordService = async (email: string) : Promise<void> => {
+export const sendEmailResetPasswordClientService = async (email: string) : Promise<void> => {
     const clientRepository: Repository<Client> = AppDataSource.getRepository(Client);
     const client: Client | null = await clientRepository.findOneBy({
         email: email
@@ -25,6 +25,6 @@ export const sendEmailResetPasswordService = async (email: string) : Promise<voi
     }
     await updateResetPasswordClientService(client.id, data)
 
-    const resetPasswordTemplate = emailService.resetPasswordTemplate(client.name, client.email, client.reset_password!)
+    const resetPasswordTemplate = emailService.resetPasswordClientTemplate(client.name, client.email, resetToken)
     await emailService.senEmail(resetPasswordTemplate)
 }

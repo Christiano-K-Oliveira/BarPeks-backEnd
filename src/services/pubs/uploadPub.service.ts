@@ -5,6 +5,7 @@ import { v2 as cloudinary } from 'cloudinary'
 import { iPubResponse } from "../../interfaces/pubs.interfaces";
 import { Pub } from "../../entities";
 import { updatePubService } from "./updatePub.service";
+import { unlink } from "node:fs"
 
 export const uploadPubService = async (id: number, photo: Express.Multer.File | undefined): Promise<iPubResponse> => {
     cloudinary.config({
@@ -19,7 +20,7 @@ export const uploadPubService = async (id: number, photo: Express.Multer.File | 
     });
 
     if(!pub){
-        throw new AppError('Produto não encontrado', 404)
+        throw new AppError('Bar não encontrado', 404)
     }
 
     if(!photo){
@@ -29,10 +30,16 @@ export const uploadPubService = async (id: number, photo: Express.Multer.File | 
     const upload = await cloudinary.uploader.upload(
         photo.path, 
         { resource_type: 'image' }, 
-        (error, result) => { return result }
+        (error, result) => { return error }
     )
     
     const updateProduct = await updatePubService(id, { photo_url: upload.secure_url })
+    
+    unlink(photo.path, (error) => {
+        if(error){
+            console.log(error)
+        }
+    })
 
     return updateProduct
 }

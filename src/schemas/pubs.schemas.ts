@@ -43,10 +43,15 @@ const resetPasswordPubSchema = z.object({
     reset_password: z.string()
 })
 
+const passwordPubSchema = z.object({
+    password: z.string().max(120)
+})
+
 
 export { 
     pubsSchemaRequest, 
     pubsSchemaResponse, 
     pubsUpdateSchemaRequest, 
     resetPasswordPubSchema,
+    passwordPubSchema
 }
