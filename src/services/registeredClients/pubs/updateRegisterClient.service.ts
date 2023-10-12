@@ -8,11 +8,17 @@ import { registeredClientsSchemaResponse } from "../../../schemas/registeredClie
 export const updateRegisterClientService = async (id: number, data: iUpdateRegisteredClient, pubId: number): Promise<iRegisteredClientResponse> => {
   const registerClientRepository: Repository<RegisteredClients> = AppDataSource.getRepository(RegisteredClients);
 
-  const findRegisterClient: RegisteredClients | null = await registerClientRepository.findOneBy({
-    id: id,
-    pub: {
-      id: pubId,
+  const findRegisterClient: RegisteredClients | null = await registerClientRepository.findOne({
+    where: {
+      id: id,
+      pub: {
+        id: pubId,
+      },
     },
+    relations: {
+      client: true,
+      pub: true,
+    }
   });
 
   if (!findRegisterClient) {

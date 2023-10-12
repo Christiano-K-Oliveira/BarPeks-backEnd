@@ -7,9 +7,15 @@ import { listRegisteredClientsSchema } from '../../../schemas/registeredClients.
 export const listRegisterClientService = async (pubId: number): Promise<iListRegisteredClients> => {
     const registerClientRepository: Repository<RegisteredClients> = AppDataSource.getRepository(RegisteredClients);
 
-	const findRegisterClient: RegisteredClients[] = await registerClientRepository.findBy({
-        pub: {
-            id: pubId
+	const findRegisterClient: RegisteredClients[] = await registerClientRepository.find({
+        where: {
+            pub: {
+                id: pubId
+            }
+        },
+        relations: {
+            client: true,
+            pub: true,
         }
     });
 	const registeredClients = listRegisteredClientsSchema.parse(findRegisterClient);

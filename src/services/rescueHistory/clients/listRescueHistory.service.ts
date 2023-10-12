@@ -7,9 +7,15 @@ import { listRescueHistorySchema } from '../../../schemas/rescueHistory.schemas'
 export const listRescueHistoryService = async (clientId: number): Promise<iListRescueHistory> => {
     const registerClientRepository: Repository<RescueHistory> = AppDataSource.getRepository(RescueHistory);
 
-	const findRegisterClient: RescueHistory[] = await registerClientRepository.findBy({
-        client: {
-            id: clientId
+	const findRegisterClient: RescueHistory[] = await registerClientRepository.find({
+        where: {
+            client: {
+                id: clientId
+            },
+        },
+        relations: {
+            client: true,
+            pub: true,
         }
     });
 	const rescueHRescueHistory = listRescueHistorySchema.parse(findRegisterClient);
