@@ -48,9 +48,10 @@ const deleteProductController = async (req: Request, res: Response): Promise<Res
 
 const uploadProductController = async (req: Request, res: Response): Promise<Response> => {
     const productId: number = parseInt(req.params.id)
+    const pubId = parseInt(res.locals.usuarioId)
     const photo: Express.Multer.File | undefined = req.file
 
-    const product = await uploadProductService(productId, photo)
+    const product = await uploadProductService(productId, photo, pubId)
 
     return res.status(200).json(product)
 }

@@ -25,8 +25,11 @@ const listRegisterClientController = async (req: Request, res: Response): Promis
 
 const listRegisterClientUniqueController = async (req: Request, res: Response): Promise<Response> => {
   const pubId = parseInt(res.locals.usuarioId);
-  const registerClientData: iUniqueRegisteredClientRequest = req.body;
-  const registerClient = await listRegisterClientUniqueService(registerClientData, pubId);
+  const data = {
+    name: req.params.name,
+    cpf: req.params.cpf
+  }
+  const registerClient = await listRegisterClientUniqueService(data, pubId);
 
   return res.status(200).json(registerClient);
 };

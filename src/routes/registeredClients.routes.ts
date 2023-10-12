@@ -9,7 +9,7 @@ const clientRegisteredClientsRoutes: Router = Router();
 
 pubRegisteredClientsRoutes.post('', ensureAuthIsValidMiddleware, validateData(registeredClientsSchemaRequest), createRegisterClientController)
 pubRegisteredClientsRoutes.get('', ensureAuthIsValidMiddleware, listRegisterClientController)
-pubRegisteredClientsRoutes.get('/search', ensureAuthIsValidMiddleware, listRegisterClientUniqueController)
+pubRegisteredClientsRoutes.get('/:name/:cpf', ensureAuthIsValidMiddleware, listRegisterClientUniqueController)
 pubRegisteredClientsRoutes.patch('/:id', ensureAuthIsValidMiddleware, validateData(registeredClientsUpdateSchemaRequest), updateRegisterClientController)
 pubRegisteredClientsRoutes.delete('/:id', ensureAuthIsValidMiddleware, deleteRegisterClientController)
 

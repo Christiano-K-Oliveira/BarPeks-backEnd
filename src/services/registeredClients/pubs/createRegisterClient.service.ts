@@ -15,7 +15,7 @@ export const createRegisterClientService = async (registerClientData: iRegistere
     });
 
     const client: Client | null = await clientRepository.findOneBy({
-        cpf: registerClientData.cpf
+        email: registerClientData.email
     });
 
     const findRegisterClient: RegisteredClients | null = await registerClientRepository.findOneBy({
@@ -37,7 +37,7 @@ export const createRegisterClientService = async (registerClientData: iRegistere
     const data = {
         ...registerClientData,
         pub: pub,
-        client: client
+        client: client,
     }
 
     const registerClient: iRegisteredClientRequest = registerClientRepository.create(data)

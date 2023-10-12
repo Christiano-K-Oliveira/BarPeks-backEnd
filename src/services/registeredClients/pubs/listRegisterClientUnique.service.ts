@@ -8,26 +8,44 @@ import { listRegisteredClientsSchema } from "../../../schemas/registeredClients.
 export const listRegisterClientUniqueService = async (data: iUniqueRegisteredClientRequest, pubId: number): Promise<iListRegisteredClients> => {
   const registerClientRepository: Repository<RegisteredClients> = AppDataSource.getRepository(RegisteredClients);
 
-  const findRegisteredClientsName: RegisteredClients[] | null = await registerClientRepository.findBy({
-    name: data.name !== undefined ? data.name : "",
-    pub: {
-      id: pubId,
+  const findRegisteredClientsName: RegisteredClients[] | null = await registerClientRepository.find({
+    where: {
+      name: data.name !== undefined ? data.name : "",
+      pub: {
+        id: pubId,
+      },
+    },
+    relations: {
+      client: true,
+      pub: true
+    }
+  });
+
+  const findRegisteredClientsCpf: RegisteredClients[] | null = await registerClientRepository.find({
+    where: {
+      cpf: data.socialNumber !== undefined ? data.socialNumber : "",
+      pub: {
+        id: pubId,
+      },
+    },
+    relations: {
+      client: true,
+      pub: true
     },
   });
 
-  const findRegisteredClientsCpf: RegisteredClients[] | null = await registerClientRepository.findBy({
-    cpf: data.socialNumber !== undefined ? data.socialNumber : "",
-    pub: {
-      id: pubId,
+  const findRegisteredClients: RegisteredClients[] | null = await registerClientRepository.find({
+    where: {
+      name: data.name !== undefined ? data.name : "",
+      cpf: data.socialNumber !== undefined ? data.socialNumber : "",
+      pub: {
+        id: pubId,
+      },
     },
-  });
-
-  const findRegisteredClients: RegisteredClients[] | null = await registerClientRepository.findBy({
-    name: data.name !== undefined ? data.name : "",
-    cpf: data.socialNumber !== undefined ? data.socialNumber : "",
-    pub: {
-      id: pubId,
-    },
+    relations: {
+      pub: true,
+      client: true,
+    }
   });
 
   if (findRegisteredClients.length === 0 && findRegisteredClientsName.length === 0 && findRegisteredClientsCpf.length === 0) {

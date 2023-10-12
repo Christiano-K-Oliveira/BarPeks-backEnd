@@ -29,7 +29,8 @@ const registeredClientsSchemaResponse = z.object({
     }),
     client: z.object({
         id: z.number(),
-        name: z.string()
+        name: z.string(),
+        photo_url: z.string(),
     })
 })
 

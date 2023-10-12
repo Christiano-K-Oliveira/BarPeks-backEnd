@@ -59,7 +59,7 @@ const resetPasswordController = async (req: Request, res: Response): Promise<Res
 }
 
 const uploadClientController = async (req: Request, res: Response): Promise<Response> => {
-    const clientId: number = parseInt(res.locals.id)
+    const clientId: number = parseInt(req.params.id)
     const photo: Express.Multer.File | undefined = req.file
 
     const client = await uploadClientService(clientId, photo)
