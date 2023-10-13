@@ -27,12 +27,18 @@ export const listRegisterClientUniqueForClientService = async (data: iUniqueRegi
 	}
 
 	if(findPubName){
-		const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOneBy({
-			pub: {
-				id: findPubName.id
+		const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOne({
+			where: {
+				pub: {
+					id: findPubName.id
+				},
+				client: {
+					id: clientId
+				},
 			},
-			client: {
-				id: clientId
+			relations: {
+				pub: true,
+				client: true,
 			}
 		});
 
@@ -42,12 +48,18 @@ export const listRegisterClientUniqueForClientService = async (data: iUniqueRegi
 	}
 
 	if(findPubSocialNumber){
-		const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOneBy({
-			pub: {
-				id: findPubSocialNumber.id
+		const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOne({
+			where: {
+				pub: {
+					id: findPubSocialNumber.id
+				},
+				client: {
+					id: clientId
+				},
 			},
-			client: {
-				id: clientId
+			relations: {
+				pub: true,
+				client: true,
 			}
 		});
 
@@ -56,12 +68,18 @@ export const listRegisterClientUniqueForClientService = async (data: iUniqueRegi
 		return registerClient;
 	}
 
-	const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOneBy({
-		pub: {
-			id: findPub ? findPub.id : 0
+	const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOne({
+		where: {
+			pub: {
+				id: findPub ? findPub.id : 0
+			},
+			client: {
+				id: clientId
+			}
 		},
-		client: {
-			id: clientId
+		relations: {
+			pub: true,
+			client: true,
 		}
 	});
 

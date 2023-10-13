@@ -15,6 +15,7 @@ const rescueHistorySchemaResponse = z.object({
     status: z.string(),
     date: z.string(),
     reward_name: z.string().max(80),
+    rescue_code: z.string().max(10),
     pub: z.object({
         id: z.number(),
         name: z.string().max(150),

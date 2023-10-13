@@ -25,7 +25,8 @@ const registeredClientsSchemaResponse = z.object({
     points: z.string().max(6),
     pub: z.object({
         id: z.number(),
-        name: z.string()
+        name: z.string(),
+        photo_url: z.string(),
     }),
     client: z.object({
         id: z.number(),

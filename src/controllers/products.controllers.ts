@@ -23,11 +23,10 @@ const listProductsController = async (req: Request, res: Response): Promise<Resp
 }
 
 const listProductUniqueController = async (req: Request, res: Response): Promise<Response> => {
-    const pubId = parseInt(res.locals.usuarioId);
-	const productId: number = parseInt(req.params.id);
-	const product = await listProductUniqueService(productId, pubId);
+	const pubId: number = parseInt(req.params.id);
+	const products = await listProductUniqueService(pubId);
 
-	return res.status(200).json(product);
+	return res.status(200).json(products);
 }
 
 const updateProductController = async (req: Request, res: Response): Promise<Response> => {

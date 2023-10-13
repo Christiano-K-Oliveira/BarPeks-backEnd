@@ -53,7 +53,10 @@ const deleteRegisterClientController = async (req: Request, res: Response): Prom
 
 const listRegisterClientUniqueForClientController = async (req: Request, res: Response): Promise<Response> => {
   const clientId = parseInt(res.locals.usuarioId);
-  const registerClientData: iUniqueRegisteredClientRequest = req.body;
+  const registerClientData: iUniqueRegisteredClientRequest = {
+    name: req.params.name,
+    socialNumber: req.params.socialNumber,
+  };
   const registerClient = await listRegisterClientUniqueForClientService(registerClientData, clientId);
 
   return res.status(200).json(registerClient);
