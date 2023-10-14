@@ -3,6 +3,7 @@ import { z } from 'zod'
 const rescueHistorySchemaRequest = z.object({
     status: z.string().default('disponivel'),
     reward_name: z.string().max(80),
+    code_rescue: z.string().max(10),
 })
 
 const rescueHistorysUpdateSchemaRequest = z.object({
@@ -15,11 +16,11 @@ const rescueHistorySchemaResponse = z.object({
     status: z.string(),
     date: z.string(),
     reward_name: z.string().max(80),
-    rescue_code: z.string().max(10),
+    code_rescue: z.string().max(10),
     pub: z.object({
         id: z.number(),
         name: z.string().max(150),
-        socialNumber: z.string().max(14)
+        social_number: z.string().max(14)
     }),
     client: z.object({
         id: z.number(),

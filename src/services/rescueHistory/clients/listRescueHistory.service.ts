@@ -18,7 +18,7 @@ export const listRescueHistoryService = async (clientId: number): Promise<iListR
             pub: true,
         }
     });
-	const rescueHRescueHistory = listRescueHistorySchema.parse(findRegisterClient);
+	const listRescueHistory = listRescueHistorySchema.parse(findRegisterClient);
     
-	return rescueHRescueHistory;
+	return listRescueHistory;
 }
