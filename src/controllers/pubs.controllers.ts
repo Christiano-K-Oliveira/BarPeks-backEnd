@@ -4,9 +4,9 @@ import { createPubService } from '../services/pubs/createPub.service'
 import { listPubUniqueService } from '../services/pubs/listPubUnique.service';
 import { updatePubService } from '../services/pubs/updatePub.service';
 import { deletePubService } from '../services/pubs/deletePub.service';
-import { sendEmailResetPasswordService } from '../services/pubs/senEmailResetPassword.service';
 import { resetPasswordService } from '../services/pubs/resetPassword.service';
 import { uploadPubService } from '../services/pubs/uploadPub.service';
+import { sendEmailResetPasswordPubService } from '../services/pubs/senEmailResetPassword.service';
 
 const createPubController = async (req: Request, res: Response): Promise<Response> => {
     const pubData: iPubRequest = req.body
@@ -15,8 +15,8 @@ const createPubController = async (req: Request, res: Response): Promise<Respons
     return res.status(201).json(newPub)
 }
 
-const listPubUniqueController = async (req:Request, res: Response): Promise<Response> => {
-	const pubId: number = parseInt(req.params.id);
+const listPubUniqueController = async (req: Request, res: Response): Promise<Response> => {
+	const pubId: number = parseInt(res.locals.usuarioId);
 	const pub = await listPubUniqueService(pubId);
 
 	return res.status(200).json(pub);
@@ -39,7 +39,7 @@ const deletePubController = async (req: Request, res: Response): Promise<Respons
 const sendEmailResetPasswordController = async (req: Request, res: Response): Promise<Response> => {
     const { email } = req.body;
 
-    await sendEmailResetPasswordService(email)
+    await sendEmailResetPasswordPubService(email)
 
     return res.status(200).json({
         message: 'Token enviado'

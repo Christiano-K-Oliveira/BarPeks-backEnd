@@ -12,6 +12,7 @@ export const listProductsService = async (pubId: number): Promise<iListProducts>
             id: pubId
         }
     });
+
 	const products = listProductsSchema.parse(findProducts);
     
 	return products;

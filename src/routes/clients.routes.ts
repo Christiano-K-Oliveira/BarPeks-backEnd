@@ -9,7 +9,7 @@ const upload = require('../middlewares/uploadPhoto.middleware')
 const clientsRoutes: Router = Router();
 
 clientsRoutes.post('', validateData(clientsSchemaRequest), createClientController)
-clientsRoutes.get('/:id', ensureAuthIsValidMiddleware, ensureClientAccount, listClientUniqueController)
+clientsRoutes.get('', ensureAuthIsValidMiddleware, listClientUniqueController)
 clientsRoutes.patch('/:id', ensureAuthIsValidMiddleware, ensureClientAccount, validateData(clientsUpdateSchemaRequest), updateClientController)
 clientsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensureClientAccount, deleteClientController)
 clientsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)

@@ -34,7 +34,7 @@ export const createRescueHistoryService = async (rescueHistoryData: iRescueHisto
 
     const rescueHistory: iRescueHistoryRequest = rescueHistoryRepository.create(data)
     await rescueHistoryRepository.save(rescueHistory)
-
+    
     const rescueHistoryResponse = rescueHistorySchemaResponse.parse(rescueHistory)
 
     return rescueHistoryResponse

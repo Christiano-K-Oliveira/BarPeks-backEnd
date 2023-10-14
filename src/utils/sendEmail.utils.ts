@@ -15,7 +15,7 @@ class EmailService {
         })
 
         await transporter.sendMail({
-            from: 'kayky.20oliveira@gmail.com',
+            from: 'barperks68@gmail.com',
             to,
             subject,
             html: text
@@ -27,7 +27,7 @@ class EmailService {
         })
     }
 
-    resetPasswordTemplate(userName: string, userEmail: string, resetToken: string) {
+    resetPasswordClientTemplate(userName: string, userEmail: string, resetToken: string) {
         const mailGenerator = new Mailgen({
             theme: 'default',
             product: {
@@ -45,7 +45,41 @@ class EmailService {
                     button: {
                         color: '#22BC66',
                         text: 'Recuperar senha',
-                        link: `http://localhost:5173/recuperar-senha/${resetToken}`
+                        link: `http://localhost:5173/recuperar-senha/cliente/${resetToken}`
+                    }
+                },
+                outro: 'Necessita de ajuda ou tem dúvidas? Basta responder a este e-mail. Teremos todo o gosto em ajudar.'
+            }
+        };
+
+        const emailBody = mailGenerator.generate(email);
+        const emailTemplate = {
+            to: userEmail,
+            subject: 'Recuperar Senha',
+            text: emailBody,
+        }
+
+        return emailTemplate
+    }
+    resetPasswordPubTemplate(userName: string, userEmail: string, resetToken: string) {
+        const mailGenerator = new Mailgen({
+            theme: 'default',
+            product: {
+                name: 'Bar Perks',
+                link: `http://localhost:5173`
+            }
+        });
+
+        const email = {
+            body: {
+                name: userName,
+                intro: 'Bem-vindo ao recuperador de senha do BarPerks! Estamos muito entusiasmados por ter você a bordo.',
+                action: {
+                    instructions: 'Para recuperar sua senha, clique aqui:',
+                    button: {
+                        color: '#22BC66',
+                        text: 'Recuperar senha',
+                        link: `http://localhost:5173/recuperar-senha/estabelecimento/${resetToken}`
                     }
                 },
                 outro: 'Necessita de ajuda ou tem dúvidas? Basta responder a este e-mail. Teremos todo o gosto em ajudar.'

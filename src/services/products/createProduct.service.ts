@@ -13,6 +13,7 @@ export const createProductService = async (productData: iProductRequest, pubId: 
         id: pubId
     });
 
+
     if (!pub) {
 		throw new AppError('Bar não encontrado', 404);
 	}

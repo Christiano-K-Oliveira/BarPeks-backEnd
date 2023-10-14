@@ -25,8 +25,11 @@ const listRegisterClientController = async (req: Request, res: Response): Promis
 
 const listRegisterClientUniqueController = async (req: Request, res: Response): Promise<Response> => {
   const pubId = parseInt(res.locals.usuarioId);
-  const registerClientData: iUniqueRegisteredClientRequest = req.body;
-  const registerClient = await listRegisterClientUniqueService(registerClientData, pubId);
+  const data = {
+    name: req.params.name,
+    cpf: req.params.cpf
+  }
+  const registerClient = await listRegisterClientUniqueService(data, pubId);
 
   return res.status(200).json(registerClient);
 };
@@ -50,7 +53,10 @@ const deleteRegisterClientController = async (req: Request, res: Response): Prom
 
 const listRegisterClientUniqueForClientController = async (req: Request, res: Response): Promise<Response> => {
   const clientId = parseInt(res.locals.usuarioId);
-  const registerClientData: iUniqueRegisteredClientRequest = req.body;
+  const registerClientData: iUniqueRegisteredClientRequest = {
+    name: req.params.name,
+    socialNumber: req.params.socialNumber,
+  };
   const registerClient = await listRegisterClientUniqueForClientService(registerClientData, clientId);
 
   return res.status(200).json(registerClient);

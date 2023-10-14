@@ -9,7 +9,7 @@ const upload = require('../middlewares/uploadPhoto.middleware')
 const pubsRoutes: Router = Router();
 
 pubsRoutes.post('', validateData(pubsSchemaRequest), createPubController)
-pubsRoutes.get('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, listPubUniqueController)
+pubsRoutes.get('', ensureAuthIsValidMiddleware, listPubUniqueController)
 pubsRoutes.patch('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, validateData(pubsUpdateSchemaRequest), updatePubController)
 pubsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, deletePubController)
 pubsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)

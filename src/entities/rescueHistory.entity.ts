@@ -16,6 +16,9 @@ class RescueHistory {
     @Column({ type: 'varchar', length: 80 })
     reward_name: string;
 
+    @Column({ type: 'varchar', length: 10})
+    code_rescue: string;
+
     @ManyToOne(() => Client, { onDelete: "CASCADE" })
 	client: Client;
 

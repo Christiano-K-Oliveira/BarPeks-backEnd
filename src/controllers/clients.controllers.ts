@@ -4,9 +4,9 @@ import { createClientService } from "../services/clients/createClient.service"
 import { listClientUniqueService } from '../services/clients/listClientUnique.service';
 import { updateClientService } from '../services/clients/updateClient.service';
 import { deleteClientService } from '../services/clients/deleteClient.service';
-import { sendEmailResetPasswordService } from '../services/clients/sendEmailResetPassword.service'
 import { resetPasswordService } from '../services/clients/resetPassword.service';
 import { uploadClientService } from '../services/clients/uploadClient.service';
+import { sendEmailResetPasswordClientService } from '../services/clients/sendEmailResetPassword.service';
 
 const createClientController = async (req: Request, res: Response): Promise<Response> => {
     const clientData: iClientRequest = req.body
@@ -15,8 +15,8 @@ const createClientController = async (req: Request, res: Response): Promise<Resp
     return res.status(201).json(newClient)
 }
 
-const listClientUniqueController = async (req:Request, res: Response): Promise<Response> => {
-	const clientId: number = parseInt(req.params.id);
+const listClientUniqueController = async (req: Request, res: Response): Promise<Response> => {
+	const clientId: number = parseInt(res.locals.usuarioId);
 	const client = await listClientUniqueService(clientId);
 
 	return res.status(200).json(client);
@@ -40,7 +40,7 @@ const deleteClientController = async (req: Request, res: Response): Promise<Resp
 const sendEmailResetPasswordController = async (req: Request, res: Response) : Promise<Response> => {
     const { email } = req.body;
 
-    await sendEmailResetPasswordService(email)
+    await sendEmailResetPasswordClientService(email)
 
     return res.status(200).json({
         message: 'Token enviado'
