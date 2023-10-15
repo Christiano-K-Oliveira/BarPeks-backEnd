@@ -19,6 +19,9 @@ class RescueHistory {
     @Column({ type: 'varchar', length: 10})
     code_rescue: string;
 
+    @Column({ type: 'varchar', length: 20, nullable: true })
+    rescue_date: string | null;
+
     @ManyToOne(() => Client, { onDelete: "CASCADE" })
 	client: Client;
 
