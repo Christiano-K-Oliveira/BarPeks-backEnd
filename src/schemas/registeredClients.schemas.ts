@@ -13,7 +13,9 @@ const registeredClientsUpdateSchemaRequest = z.object({
     cpf: z.string().min(11).max(11).optional(),
     email: z.string().email().max(80).optional(),
     telephone: z.string().min(11).max(11).optional(),
-    points: z.string().max(6).optional()
+    points: z.string().max(6).optional(),
+    link_qrcode: z.string().max(10).optional(),
+    old_points: z.string().max(6).optional(),
 })
 
 const registeredClientsSchemaResponse = z.object({
@@ -23,6 +25,8 @@ const registeredClientsSchemaResponse = z.object({
     email: z.string().email().max(80),
     telephone: z.string().min(11).max(11),
     points: z.string().max(6),
+    link_qrcode: z.string().max(10).nullish(),
+    old_points: z.string().max(6).nullish(),
     pub: z.object({
         id: z.number(),
         name: z.string(),
