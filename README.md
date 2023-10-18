@@ -20,7 +20,11 @@ Você pode autenticar sua solicitação adicionando um token.
 
 Se quiser usar a API REST do GitHub para uso pessoal, crie um personal access token atravé do login. As operações da API REST usadas neste artigo exigem o escopo repo para personal access tokens (classic) ou, a menos que haja outra indicação, o acesso somente leitura a repositórios públicos para fine-grained personal access tokens. Outras operações podem exigir escopos ou permissões diferentes.
 
-<h2>Sobre os Parâmetros</h2>
+<h3>Sobre os Parâmetros</h3>
 
 Os parâmetros modificam o caminho da operação. Por exemplo, o caminho "Excluir um cliente" é /client/{id}. As chaves {} denotam parâmetros que você precisa especificar.
 
+<h3>Sobre o Upload</h3>
+
+Você pode fazer o upload de imagem enviando no cabeçalho um: "Content-Type": "multipart/form-data" e insirindo a sua imagem.
+Podendo enviar uma imagem nos formatos de jpeg, jpg e png.

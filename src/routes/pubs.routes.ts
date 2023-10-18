@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import validateData from "../middlewares/validateData.middleware";
 import { pubsSchemaRequest, pubsUpdateSchemaRequest } from "../schemas/pubs.schemas";
 import { createPubController, deletePubController, listPubUniqueController, resetPasswordController, sendEmailResetPasswordController, updatePubController, uploadPubController } from "../controllers/pubs.controllers";
@@ -15,5 +15,10 @@ pubsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, deleteP
 pubsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)
 pubsRoutes.patch('/recuperar-senha/:token', resetPasswordController)
 pubsRoutes.patch('/upload/:id', (upload.single('file')), uploadPubController)
+// pubsRoutes.post('/plan', (req: Request, res: Response) => {
+//     const data = req.body
+
+//     console.log(data)
+// })
 
 export default pubsRoutes
