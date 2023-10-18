@@ -6,14 +6,20 @@ import { RescueHistory } from "../../../entities";
 import { rescueHistorySchemaResponse } from "../../../schemas/rescueHistory.schemas";
 
 export const updateRescueHistoryForPubService = async (id: number, data: iUpdateRescueHistory, pubId: number): Promise<iRescueHistoryResponse> => {
-  const rescueHistoryRepository: Repository<RescueHistory> =
-    AppDataSource.getRepository(RescueHistory);
+  const rescueHistoryRepository: Repository<RescueHistory> = AppDataSource.getRepository(RescueHistory);
 
-  const findRescueHistory: RescueHistory | null = await rescueHistoryRepository.findOneBy({
-    id: id,
-    pub: {
-      id: pubId,
+  const findRescueHistory: RescueHistory | null = await rescueHistoryRepository.findOne({
+    where: {
+      id: id,
+      code_rescue: data.code_rescue!,
+      pub: {
+        id: pubId,
+      }
     },
+    relations: {
+      client: true,
+      pub: true,
+    }
   });
 
   if (!findRescueHistory) {
@@ -27,8 +33,7 @@ export const updateRescueHistoryForPubService = async (id: number, data: iUpdate
 
   await rescueHistoryRepository.save(newDataRescueHistory);
 
-  const registerClient =
-    rescueHistorySchemaResponse.parse(newDataRescueHistory);
+  const registerClient = rescueHistorySchemaResponse.parse(newDataRescueHistory);
 
   return registerClient;
 };

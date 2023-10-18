@@ -7,6 +7,7 @@ import { updateRegisterClientService } from "../services/registeredClients/pubs/
 import { deleteRegisterClientService } from "../services/registeredClients/pubs/deleteRegisterClient.service";
 import { listRegisterClientUniqueForClientService } from "../services/registeredClients/clients/listRegisterClientForClient.service";
 import { updateRegisterClientForClientService } from "../services/registeredClients/clients/updateRegisterClientForClient.service";
+import { listRegisterClientForValidatePointsService } from "../services/registeredClients/clients/listRegisterClientForValidatePoints.service"
 
 const createRegisterClientController = async (req: Request, res: Response): Promise<Response> => {
   const pubId = parseInt(res.locals.usuarioId);
@@ -27,7 +28,7 @@ const listRegisterClientUniqueController = async (req: Request, res: Response): 
   const pubId = parseInt(res.locals.usuarioId);
   const data = {
     name: req.params.name,
-    cpf: req.params.cpf
+    socialNumber: req.params.cpf
   }
   const registerClient = await listRegisterClientUniqueService(data, pubId);
 
@@ -51,6 +52,7 @@ const deleteRegisterClientController = async (req: Request, res: Response): Prom
 };
 
 
+
 const listRegisterClientUniqueForClientController = async (req: Request, res: Response): Promise<Response> => {
   const clientId = parseInt(res.locals.usuarioId);
   const registerClientData: iUniqueRegisteredClientRequest = {
@@ -70,6 +72,14 @@ const updateRegisterClientForClientController = async (req: Request, res: Respon
   return res.status(200).json(newRegisterClient);
 };
 
+const listRegisterClientForValidatePointsController = async (req: Request, res: Response): Promise<Response> => {
+  const qrcode: string = req.params.qrcode
+  const clientId = parseInt(res.locals.usuarioId)
+  const registerClient = await listRegisterClientForValidatePointsService(qrcode, clientId)
+
+  return res.status(200).json(registerClient)
+}
+
 export {
   createRegisterClientController,
   listRegisterClientController,
@@ -78,4 +88,5 @@ export {
   deleteRegisterClientController,
   listRegisterClientUniqueForClientController,
   updateRegisterClientForClientController,
+  listRegisterClientForValidatePointsController,
 };

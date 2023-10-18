@@ -22,6 +22,12 @@ class RegisteredClients {
     @Column({ type: 'varchar', length: 6 })
     points: string;
 
+    @Column({ type: 'varchar', length: 10, nullable: true})
+    link_qrcode: string | null;
+
+    @Column({ type: 'varchar', length: 6, nullable: true })
+    old_points: string | null;
+
     @ManyToOne(() => Client, { onDelete: "CASCADE" })
 	client: Client;
 

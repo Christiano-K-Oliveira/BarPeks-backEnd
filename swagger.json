@@ -1,0 +1,50 @@
+{
+    "openapi": "1.0.0",
+    "info": {
+        "title": "Bar Perks",
+        "description": "Documentação da APi do Bar Perks.",
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+    "components": {
+        "bearerAuth": {
+            "type": "string",
+            "schema": "bearer",
+            "bearerFormat": "JWT"
+        }
+    },
+    "paths": {
+    
+        "/login-pub": {
+            "post": {
+                "tags": ["Login"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            },
+            "reponses": {
+                "200": {
+                    "description":  "" 
+                }
+            }
+        }
+
+
+    }
+}

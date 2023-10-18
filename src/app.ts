@@ -8,11 +8,14 @@ import productsRoutes from "./routes/products.routes";
 import { clientRegisteredClientsRoutes, pubRegisteredClientsRoutes } from "./routes/registeredClients.routes";
 import { clientRescueHistoryRoutes, pubRescueHistoryRoutes } from "./routes/rescueHistory.routes";
 import cors from "cors"
+import swaggerUI from "swagger-ui-express"
+import swaggerDocument from '../swagger.json'
 
 
 const app: Application = express();
 app.use(express.json());
 app.use(cors())
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use("/pubs", pubsRoutes);
 app.use("", loginRoutes);
