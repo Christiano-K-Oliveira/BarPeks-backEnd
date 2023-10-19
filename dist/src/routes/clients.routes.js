@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const validateData_middleware_1 = __importDefault(require("../middlewares/validateData.middleware"));
+const clients_schemas_1 = require("../schemas/clients.schemas");
+const clients_controllers_1 = require("../controllers/clients.controllers");
+const ensureAuthIsValid_middleware_1 = __importDefault(require("../middlewares/ensureAuthIsValid.middleware"));
+const ensureAccount_middleware_1 = require("../middlewares/ensureAccount.middleware");
+const upload = require('../middlewares/uploadPhoto.middleware');
+const clientsRoutes = (0, express_1.Router)();
+clientsRoutes.post('', (0, validateData_middleware_1.default)(clients_schemas_1.clientsSchemaRequest), clients_controllers_1.createClientController);
+clientsRoutes.get('', ensureAuthIsValid_middleware_1.default, clients_controllers_1.listClientUniqueController);
+clientsRoutes.patch('/:id', ensureAuthIsValid_middleware_1.default, ensureAccount_middleware_1.ensureClientAccount, (0, validateData_middleware_1.default)(clients_schemas_1.clientsUpdateSchemaRequest), clients_controllers_1.updateClientController);
+clientsRoutes.delete('/:id', ensureAuthIsValid_middleware_1.default, ensureAccount_middleware_1.ensureClientAccount, clients_controllers_1.deleteClientController);
+clientsRoutes.post('/recuperar-senha', clients_controllers_1.sendEmailResetPasswordController);
+clientsRoutes.patch('/recuperar-senha/:token', clients_controllers_1.resetPasswordController);
+clientsRoutes.patch('/upload/:id', (upload.single('file')), clients_controllers_1.uploadClientController);
+exports.default = clientsRoutes;

@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.clientRegisteredClientsRoutes = exports.pubRegisteredClientsRoutes = void 0;
+const express_1 = require("express");
+const validateData_middleware_1 = __importDefault(require("../middlewares/validateData.middleware"));
+const registeredClients_schemas_1 = require("../schemas/registeredClients.schemas");
+const ensureAuthIsValid_middleware_1 = __importDefault(require("../middlewares/ensureAuthIsValid.middleware"));
+const registeredClients_controllers_1 = require("../controllers/registeredClients.controllers");
+const pubRegisteredClientsRoutes = (0, express_1.Router)();
+exports.pubRegisteredClientsRoutes = pubRegisteredClientsRoutes;
+const clientRegisteredClientsRoutes = (0, express_1.Router)();
+exports.clientRegisteredClientsRoutes = clientRegisteredClientsRoutes;
+pubRegisteredClientsRoutes.post('', ensureAuthIsValid_middleware_1.default, (0, validateData_middleware_1.default)(registeredClients_schemas_1.registeredClientsSchemaRequest), registeredClients_controllers_1.createRegisterClientController);
+pubRegisteredClientsRoutes.get('', ensureAuthIsValid_middleware_1.default, registeredClients_controllers_1.listRegisterClientController);
+pubRegisteredClientsRoutes.get('/:name/:cpf', ensureAuthIsValid_middleware_1.default, registeredClients_controllers_1.listRegisterClientUniqueController);
+pubRegisteredClientsRoutes.patch('/:id', ensureAuthIsValid_middleware_1.default, (0, validateData_middleware_1.default)(registeredClients_schemas_1.registeredClientsUpdateSchemaRequest), registeredClients_controllers_1.updateRegisterClientController);
+pubRegisteredClientsRoutes.delete('/:id', ensureAuthIsValid_middleware_1.default, registeredClients_controllers_1.deleteRegisterClientController);
+clientRegisteredClientsRoutes.get('/:name/:socialNumber', ensureAuthIsValid_middleware_1.default, registeredClients_controllers_1.listRegisterClientUniqueForClientController);
+clientRegisteredClientsRoutes.get('/:qrcode', ensureAuthIsValid_middleware_1.default, registeredClients_controllers_1.listRegisterClientForValidatePointsController);
+clientRegisteredClientsRoutes.patch('/:id', ensureAuthIsValid_middleware_1.default, (0, validateData_middleware_1.default)(registeredClients_schemas_1.registeredClientsUpdateSchemaRequest), registeredClients_controllers_1.updateRegisterClientForClientController);

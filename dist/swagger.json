@@ -8,7 +8,7 @@
             "email": "barperks68@gmail.com"
         }
     },
-    "paths": { 
+    "paths": {
         "/login-pub": {
             "post": {
                 "summary": "Login de Estabelecimento",
@@ -270,14 +270,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -379,8 +375,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                    },
+                    "204": {},
                     "404": {
                         "description": "Bar não encontrado"
                     }
@@ -499,14 +494,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -556,14 +547,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -666,8 +653,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                    },
+                    "204": {},
                     "404": {
                         "description": "Cliente não encontrado"
                     }
@@ -786,14 +772,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -840,14 +822,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -943,7 +921,7 @@
                                     "value": {
                                         "name": "Cerveja",
                                         "value": "20",
-                                        "code": "0123456789"                                        
+                                        "code": "0123456789"
                                     }
                                 }
                             }
@@ -980,8 +958,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                    },
+                    "204": {},
                     "404": {
                         "description": "Produto não encontrado"
                     }
@@ -1007,14 +984,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -1064,14 +1037,10 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "image/jpeg": {
-                                    },
-                                    "image/jpg": {
-                                    },
-                                    "image/png": {
-                                    }
+                                    "image/jpeg": {},
+                                    "image/jpg": {},
+                                    "image/png": {}
                                 }
-                                
                             }
                         }
                     }
@@ -1201,7 +1170,7 @@
                                         "cpf": "11458974456",
                                         "email": "marcospaulo@mail.com",
                                         "telephone": "88957845698",
-                                        "points": "20"                                       
+                                        "points": "20"
                                     }
                                 }
                             }
@@ -1238,8 +1207,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                    },
+                    "204": {},
                     "404": {
                         "description": "Registro de cliente não encontrado"
                     }
@@ -1341,7 +1309,7 @@
                                         "cpf": "11458974456",
                                         "email": "marcospaulo@mail.com",
                                         "telephone": "88957845698",
-                                        "points": "20"                                       
+                                        "points": "20"
                                     }
                                 }
                             }
@@ -1424,7 +1392,7 @@
                                     "value": {
                                         "status": "resgatado",
                                         "reward_name": "Camarões",
-                                        "code_rescue": "0123456789"                                     
+                                        "code_rescue": "0123456789"
                                     }
                                 }
                             }
@@ -1510,8 +1478,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
-                    },
+                    "204": {},
                     "404": {
                         "description": "Histórico de Recompensas não encontrado"
                     }
@@ -1575,7 +1542,6 @@
                 }
             }
         }
-
     },
     "components": {
         "schemas": {
