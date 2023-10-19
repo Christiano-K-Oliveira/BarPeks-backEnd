@@ -1,50 +1,1785 @@
 {
-    "openapi": "1.0.0",
+    "openapi": "3.0.0",
     "info": {
         "title": "Bar Perks",
         "description": "Documentação da APi do Bar Perks.",
-        "version": "1.0.0"
-    },
-    "basePath": "/",
-    "components": {
-        "bearerAuth": {
-            "type": "string",
-            "schema": "bearer",
-            "bearerFormat": "JWT"
+        "version": "1.0.0",
+        "contact": {
+            "email": "barperks68@gmail.com"
         }
     },
-    "paths": {
-    
+    "paths": { 
         "/login-pub": {
             "post": {
+                "summary": "Login de Estabelecimento",
+                "description": "Essa rota será responsável por fazer o login de um estabelecimento.",
                 "tags": ["Login"],
-                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginReq"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com",
+                                        "password": "Mypassword@12"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Credenciais inválidas!"
+                    }
+                }
+            }
+        },
+        "/login-google-pub": {
+            "post": {
+                "summary": "Login de estabelecimento com Google",
+                "description": "Essa rota será responsável por fazer o login de um estabelecimento com o google.",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginForEmail"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/login-facebook-pub": {
+            "post": {
+                "summary": "Login de estabelecimento com Facebook",
+                "description": "Essa rota será responsável por fazer o login de um estabelecimento com o facebook.",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginForEmail"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/login-client": {
+            "post": {
+                "summary": "Login de Cliente",
+                "description": "Essa rota será responsável por fazer o login de um cliente.",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginReq"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com",
+                                        "password": "Mypassword@12"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Credenciais inválidas!"
+                    }
+                }
+            }
+        },
+        "/login-google-client": {
+            "post": {
+                "summary": "Login de cliente com Google",
+                "description": "Essa rota será responsável por fazer o login de um cliente com o google.",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginForEmail"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/login-facebook-client": {
+            "post": {
+                "summary": "Login de cliente com Facebook",
+                "description": "Essa rota será responsável por fazer o login de um cliente com o facebook.",
+                "tags": ["Login"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginForEmail"
+                            },
+                            "examples": {
+                                "login": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/pubs": {
+            "post": {
+                "summary": "Criação de um Estabelecimento",
+                "description": "Essa rota será responsável por criar um conta de usuário para um estabelecimento.",
+                "tags": ["Pubs"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PubReq"
+                            },
+                            "examples": {
+                                "pub": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "social_number": "11458974456",
+                                        "email": "marcospaulo@mail.com",
+                                        "password": "Thenew@12",
+                                        "telephone": "88957845698",
+                                        "address": "Rua Marcos Paulo",
+                                        "state": "São Paulo",
+                                        "city": "Campinas",
+                                        "postal_code": "21459876"
+                                    }
+                                }
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PubRes"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Este email já existe"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar um Estabelecimento",
+                "description": "Essa rota será responsável por pegar e listar um estabelecimento.",
+                "tags": ["Pubs"],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PubRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/pubs/{id}": {
+            "patch": {
+                "summary": "Atualização de um Estabelecimento",
+                "description": "Essa rota será responsável por atualizar a conta de um estabelecimento.",
+                "tags": ["Pubs"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar estabelecimento pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PubReq"
+                            },
+                            "examples": {
+                                "pub": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PubRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Excluir um Estabelecimento",
+                "description": "Essa rota será responsável por excluir a conta de um estabelecimento.",
+                "tags": ["Pubs"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Excluir estabelecimento pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/pubs/recuperar-senha": {
+            "post": {
+                "summary": "Recuperar Senha de um Estabelecimento",
+                "description": "Essa rota será responsável por enviar um email de recuperação de senha para o estabelecimento.",
+                "tags": ["Pubs"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SendRecoverPassword"
+                            },
+                            "examples": {
+                                "pub": {
+                                    "value": {
+                                        "email": "marcospaulo@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "type": "object",
+                                "schema": {
+                                    "properties": {
+                                        "message": "Token enviado"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/pubs/recuperar-senha/{token}": {
+            "patch": {
+                "summary": "Recuperar Senha de um Estabelecimento com Token",
+                "description": "Essa rota será responsável por fazer uma nova senha para o estabelecimento.",
+                "tags": ["Pubs"],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Atualizar senha do estabelecimento pelo token",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "type": "object",
+                            "schema": {
+                                "properties": {
+                                    "password": "Mypassword@12"
+                                }
+                            },
+                            "examples": {
+                                "pub": {
+                                    "value": {
+                                        "password": "Yournewpassword@12"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "schema": {
+                                        "properties": {
+                                            "message": "Senha atualizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/pubs/upload/{id}": {
+            "patch": {
+                "summary": "Upload de imagem do Estabelecimento",
+                "description": "Essa rota será responsável por fazer o upload de uma imagem para o estabelecimento.",
+                "tags": ["Pubs"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar a photo_url do estabelecimento pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PubRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/clients": {
+            "post": {
+                "summary": "Criação de um Cliente",
+                "description": "Essa rota será responsável por criar um conta de usuário para um cliente.",
+                "tags": ["Clients"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientReq"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "birth_date": "11/08/1989",
+                                        "cpf": "11458974456",
+                                        "email": "marcospaulo@mail.com",
+                                        "password": "Thenew@12",
+                                        "telephone": "88957845698"
+                                    }
+                                }
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Este email já existe"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar um Cliente",
+                "description": "Essa rota será responsável por pegar e listar um cliente.",
+                "tags": ["Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/clients/{id}": {
+            "patch": {
+                "summary": "Atualização de um Cliente",
+                "description": "Essa rota será responsável por atualizar a conta de um cliente.",
+                "tags": ["Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientReq"
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "email": "example@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Excluir um Cliente",
+                "description": "Essa rota será responsável por excluir a conta de um cliente.",
+                "tags": ["Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Excluir cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/clients/recuperar-senha": {
+            "post": {
+                "summary": "Recuperar Senha de um Cliente",
+                "description": "Essa rota será responsável por enviar um email de recuperação de senha para o cliente.",
+                "tags": ["Clients"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SendRecoverPassword"
+                            },
+                            "examples": {
+                                "pub": {
+                                    "value": {
+                                        "email": "marcospaulo@mail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "type": "object",
+                                "schema": {
+                                    "properties": {
+                                        "message": "Token enviado"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/clients/recuperar-senha/{token}": {
+            "patch": {
+                "summary": "Recuperar Senha de um Cliente com Token",
+                "description": "Essa rota será responsável por fazer uma nova senha para o cliente.",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Atualizar senha do cliente pelo token",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "type": "object",
+                            "schema": {
+                                "properties": {
+                                    "password": "Mypassword@12"
+                                }
+                            },
+                            "examples": {
+                                "client": {
+                                    "value": {
+                                        "password": "Yournewpassword@12"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "schema": {
+                                        "properties": {
+                                            "message": "Senha atualizada com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/clients/upload/{id}": {
+            "patch": {
+                "summary": "Upload de imagem do Cliente",
+                "description": "Essa rota será responsável por fazer o upload de uma imagem para o cliente.",
+                "tags": ["Clients"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar a photo_url do cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "post": {
+                "summary": "Criação de um Produto",
+                "description": "Essa rota será responsável por criar um produto para o estabelecimento.",
+                "tags": ["Products"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductReq"
+                            },
+                            "examples": {
+                                "products": {
+                                    "value": {
+                                        "name": "Cerveja",
+                                        "value": "20",
+                                        "code": "0123456789"
+                                    }
+                                }
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ProductRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os Produtos",
+                "description": "Essa rota será responsável por pegar e listar todos os produtos do estabelecimento.",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductRes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "summary": "Listar um Produto",
+                "description": "Essa rota será responsável por pegar e listar um produto.",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Listar produto pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ProductRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualização de um Produto",
+                "description": "Essa rota será responsável por atualizar um produto.",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar produto pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductsReq"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "name": "Cerveja",
+                                        "value": "20",
+                                        "code": "0123456789"                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ProductRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Excluir um Produto",
+                "description": "Essa rota será responsável por excluir um produto.",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Excluir produto pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    }
+                }
+            }
+        },
+        "/products/upload/{id}": {
+            "patch": {
+                "summary": "Upload de imagem do Produto",
+                "description": "Essa rota será responsável por fazer o upload de uma imagem do produto.",
+                "tags": ["Products"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar a photo_url do produto pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ProductRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    }
+                }
+            }
+        },
+        "/pub/registered-clients": {
+            "post": {
+                "summary": "Criação de um Registro do Cliente",
+                "description": "Essa rota será responsável por criar um registro do cliente para o estabelecimento.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterClientReq"
+                            },
+                            "examples": {
+                                "registerClient": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "cpf": "11458974456",
+                                        "email": "marcospaulo@mail.com",
+                                        "telephone": "88957845698",
+                                        "points": "0"
+                                    }
+                                }
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image/jpeg": {
+                                    },
+                                    "image/jpg": {
+                                    },
+                                    "image/png": {
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente não encontrado"
+                    },
+                    "409": {
+                        "description": "Cliente já registrado"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os Registros de Clientes",
+                "description": "Essa rota será responsável por pegar e listar todos os registros de clientes do estabelecimento.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductRes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pub/registered-clients/{name}/{cpf}": {
+            "get": {
+                "summary": "Listar Cliente",
+                "description": "Essa rota será responsável por pegar e listar o registro do cliente pelo seu nome ou cpf.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Nome do cliente para busca",
+                        "required": true
+                    },
+                    {
+                        "name": "cpf",
+                        "in": "path",
+                        "description": "Cpf do cliente para busca",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
+                                    "name": "string",
+                                    "cpf": "string"
+                                }
+                            },
+                            "examples": {
+                                "registerClient": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "cpf": "11458974456"
                                     }
                                 }
                             }
                         }
-
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro de cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/pub/registered-clients/{id}": {
+            "patch": {
+                "summary": "Atualização de um Registro de Cliente",
+                "description": "Essa rota será responsável por atualizar um registro de cliente.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar registro de cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterClientReq"
+                            },
+                            "examples": {
+                                "registerClient": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "cpf": "11458974456",
+                                        "email": "marcospaulo@mail.com",
+                                        "telephone": "88957845698",
+                                        "points": "20"                                       
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro de cliente não encontrado"
                     }
                 }
             },
-            "reponses": {
-                "200": {
-                    "description":  "" 
+            "delete": {
+                "summary": "Excluir um Registro de Cliente",
+                "description": "Essa rota será responsável por excluir um registro de cliente.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Excluir registro de cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                    },
+                    "404": {
+                        "description": "Registro de cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/client/registered-clients/{name}/{socialNumber}": {
+            "get": {
+                "summary": "Listar Registro de Cliente",
+                "description": "Essa rota será responsável por pegar e listar o registro do cliente pelo nome ou cpf do estabelecimento.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Nome do cliente para busca",
+                        "required": true
+                    },
+                    {
+                        "name": "socialNumber",
+                        "in": "path",
+                        "description": "CPF/CNPJ do cliente para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            }
+        },
+        "/client/registered-clients/{qrcode}": {
+            "get": {
+                "summary": "Listar Registro de Cliente",
+                "description": "Essa rota será responsável por pegar e listar o registro do cliente pelo seu código de qrcode.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "qrcode",
+                        "in": "path",
+                        "description": "Código QrCode do cliente para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro de cliente não encontrado"
+                    }
+                }
+            }
+        },
+        "/client/registered-clients/{id}": {
+            "patch": {
+                "summary": "Atualização de um Registro de Cliente",
+                "description": "Essa rota será responsável por atualizar um registro de cliente.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar registro de cliente pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterClientReq"
+                            },
+                            "examples": {
+                                "registerClient": {
+                                    "value": {
+                                        "name": "Marcos Paulo",
+                                        "cpf": "11458974456",
+                                        "email": "marcospaulo@mail.com",
+                                        "telephone": "88957845698",
+                                        "points": "20"                                       
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro de cliente não encontrado"
+                    },
+                    "403": {
+                        "description": "A pontuação não pode ser menor que zero."
+                    }
+                }
+            }
+        },
+        "/pub/rescue-history/{id}": {
+            "get": {
+                "summary": "Listar todos os Históricos de Resgates",
+                "description": "Essa rota será responsável por pegar e listar todos os Históricos de Resgates de um estabelecimento com um cliente.",
+                "tags": ["Rescue History"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Listar histórico de resgate pelo ID do cliente",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RescueHistoryRes"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Histórico de Recompensas não encontrado"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualização de um Histórico de Recompensa",
+                "description": "Essa rota será responsável por atualizar um histórico de recompensa.",
+                "tags": ["Rescue History"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Atualizar histórcio de recompensa pelo ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RescueHistoryReq"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "status": "resgatado",
+                                        "reward_name": "Camarões",
+                                        "code_rescue": "0123456789"                                     
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RescueHistoryRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Histórico de Recompensas não encontrado"
+                    }
+                }
+            }
+        },
+        "/client/rescue-history/{id}": {
+            "post": {
+                "summary": "Criar um Histórcio de Recompensa",
+                "description": "Essa rota será responsável por criar um histórico de recompensa.",
+                "tags": ["Rescue History"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Buscar pelo ID do estabelecimento",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RescueHistoryReq"
+                            },
+                            "examples": {
+                                "products": {
+                                    "value": {
+                                        "status": "disponivel",
+                                        "reward_name": "Churrasco",
+                                        "code_rescue": "0123456789"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RescueHistoryRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Bar não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Excluir um Histórico de Recompensa",
+                "description": "Essa rota será responsável por excluir um histórico de recompensa.",
+                "tags": ["Rescue History"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Excluir histórico de recompensa pelo ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                    },
+                    "404": {
+                        "description": "Histórico de Recompensas não encontrado"
+                    }
+                }
+            }
+        },
+        "/pub/registered-clients/search/{id}/{codeRescue}": {
+            "get": {
+                "summary": "Listar Histórico de Recompensa do Cliente",
+                "description": "Essa rota será responsável por pegar e listar um histórico de recompensa de um cliente.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do cliente para busca",
+                        "required": true
+                    },
+                    {
+                        "name": "codeRescue",
+                        "in": "path",
+                        "description": "Código de Resgate para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Histórico de Recompensas não encontrado"
+                    }
+                }
+            }
+        },
+        "/client/registered-clients": {
+            "get": {
+                "summary": "Listar todos os Históricos de Recompensa",
+                "description": "Essa rota será responsável por pegar e listar todos os históricos de recompensa de um cliente.",
+                "tags": ["Registered Clients"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RegisterClientRes"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
-
+    },
+    "components": {
+        "schemas": {
+            "LoginReq": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LoginRes": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LoginForEmail": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "email": "string"
+                    }
+                }
+            },
+            "PubReq": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "name": "string",
+                        "social_number": "string",
+                        "email": "string",
+                        "password": "string",
+                        "telephone": "string",
+                        "address": "string",
+                        "state": "string",
+                        "city": "string",
+                        "postal_code": "string"
+                    }
+                }
+            },
+            "PubRes": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "id": "number",
+                        "name": "string",
+                        "social_number": "string",
+                        "email": "string",
+                        "telephone": "string",
+                        "address": "string",
+                        "state": "string",
+                        "city": "string",
+                        "postal_code": "string",
+                        "photo_url": "string"
+                    }
+                }
+            },
+            "SendRecoverPassword": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "email": "string"
+                    }
+                }
+            },
+            "ClientReq": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "name": "string",
+                        "birth_date": "string",
+                        "cpf": "string",
+                        "email": "string",
+                        "password": "string",
+                        "telephone": "string"
+                    }
+                }
+            },
+            "ClientRes": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "id": "number",
+                        "name": "string",
+                        "birth_date": "string",
+                        "cpf": "string",
+                        "email": "string",
+                        "telephone": "string",
+                        "photo_url": "string"
+                    }
+                }
+            },
+            "ProductReq": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "name": "string",
+                        "value": "string",
+                        "code": "string"
+                    }
+                }
+            },
+            "ProductRes": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "id": "number",
+                        "name": "string",
+                        "value": "string",
+                        "code": "string",
+                        "photo_url": "string"
+                    }
+                }
+            },
+            "RegisterClientReq": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "name": "string",
+                        "cpf": "string",
+                        "email": "string",
+                        "telephone": "string",
+                        "points": "string"
+                    }
+                }
+            },
+            "RegisterClientRes": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "id": "number",
+                        "name": "string",
+                        "cpf": "string",
+                        "email": "string",
+                        "telephone": "string",
+                        "points": "string",
+                        "link_qrcode": "string",
+                        "old_points": "string",
+                        "pub": {
+                            "properties": {
+                                "id": "number",
+                                "name": "string",
+                                "photo_url": "string"
+                            }
+                        },
+                        "client": {
+                            "properties": {
+                                "id": "number",
+                                "name": "string",
+                                "photo_url": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "RescueHistoryReq": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "status": "string",
+                        "reward_name": "string",
+                        "code_rescue": "string"
+                    }
+                }
+            },
+            "RescueHistoryRes": {
+                "type": "object",
+                "properties": {
+                    "pub": {
+                        "id": "number",
+                        "status": "string",
+                        "date": "string",
+                        "reward_name": "string",
+                        "code_rescue": "string",
+                        "pub": {
+                            "properties": {
+                                "id": "number",
+                                "name": "string",
+                                "social_number": "string"
+                            }
+                        },
+                        "client": {
+                            "properties": {
+                                "id": "number",
+                                "name": "string",
+                                "cpf": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
     }
 }

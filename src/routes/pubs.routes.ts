@@ -15,10 +15,10 @@ pubsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, deleteP
 pubsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)
 pubsRoutes.patch('/recuperar-senha/:token', resetPasswordController)
 pubsRoutes.patch('/upload/:id', (upload.single('file')), uploadPubController)
-// pubsRoutes.post('/plan', (req: Request, res: Response) => {
-//     const data = req.body
+pubsRoutes.post('/plan', (req: Request, res: Response) => {
+    const data = req.body
 
-//     console.log(data)
-// })
+    console.log(data)
+})
 
 export default pubsRoutes
