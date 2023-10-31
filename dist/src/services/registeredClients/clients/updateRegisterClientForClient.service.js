@@ -31,7 +31,7 @@ const updateRegisterClientForClientService = (id, data, clientId) => __awaiter(v
     if (!findRegisterClient) {
         throw new errors_1.AppError('Registro de cliente não encontrado', 404);
     }
-    if (parseInt(findRegisterClient.points) - parseInt(data.points)) {
+    if (parseInt(findRegisterClient.points) - parseInt(data.points) < 0) {
         throw new errors_1.AppError('A pontuação não pode ser menor que zero.', 403);
     }
     const newDataRegisterClient = Object.assign(Object.assign(Object.assign({}, findRegisterClient), data), { points: data.points && parseInt(findRegisterClient.points) >= parseInt(data.points) ? (parseInt(findRegisterClient.points) - parseInt(data.points)).toString() : findRegisterClient.points });

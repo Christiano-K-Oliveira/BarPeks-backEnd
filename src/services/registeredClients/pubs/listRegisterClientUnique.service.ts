@@ -52,8 +52,8 @@ export const listRegisterClientUniqueService = async (data: iUniqueRegisteredCli
     throw new AppError("Registro de cliente não encontrado", 404);
   }
 
-  if (findRegisteredClientsName.length > 0) {
-    const registeredClients = listRegisteredClientsSchema.parse(findRegisteredClientsName);
+  if (findRegisteredClients.length > 0) {
+    const registeredClients = listRegisteredClientsSchema.parse(findRegisteredClients);
 
     return registeredClients;
   }
@@ -64,7 +64,7 @@ export const listRegisterClientUniqueService = async (data: iUniqueRegisteredCli
     return registeredClients;
   }
 
-  const registeredClients = listRegisteredClientsSchema.parse(findRegisteredClientsCpf);
+  const registeredClients = listRegisteredClientsSchema.parse(findRegisteredClientsName);
 
   return registeredClients;
 };

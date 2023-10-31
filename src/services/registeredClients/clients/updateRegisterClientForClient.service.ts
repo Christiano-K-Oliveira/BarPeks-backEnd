@@ -24,7 +24,7 @@ export const updateRegisterClientForClientService = async (id: number, data: iUp
     if (!findRegisterClient) {
 		throw new AppError('Registro de cliente não encontrado', 404);
 	}
-	if(parseInt(findRegisterClient.points) - parseInt(data.points!)){
+	if(parseInt(findRegisterClient.points) - parseInt(data.points!) < 0){
 		throw new AppError('A pontuação não pode ser menor que zero.', 403)
 	}
 

@@ -24,15 +24,24 @@ const createRegisterClientService = (registerClientData, pubId) => __awaiter(voi
     const client = yield clientRepository.findOneBy({
         email: registerClientData.email
     });
-    const findRegisterClient = yield registerClientRepository.findOneBy({
-        cpf: registerClientData.cpf
-    });
     if (!pub) {
         throw new errors_1.AppError('Bar não encontrado', 404);
     }
     if (!client) {
         throw new errors_1.AppError('Cliente não encontrado', 404);
     }
+    const findRegisterClient = yield registerClientRepository.findOne({
+        where: {
+            cpf: registerClientData.cpf,
+            pub: {
+                id: pub.id
+            }
+        },
+        relations: {
+            client: true,
+            pub: true,
+        }
+    });
     if (findRegisterClient) {
         throw new errors_1.AppError('Cliente já registrado', 409);
     }

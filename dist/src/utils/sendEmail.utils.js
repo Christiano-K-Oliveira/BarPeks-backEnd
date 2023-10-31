@@ -45,7 +45,7 @@ class EmailService {
             theme: 'default',
             product: {
                 name: 'Bar Perks',
-                link: `http://localhost:5173`
+                link: `https://barperks.vercel.app`
             }
         });
         const email = {
@@ -57,7 +57,7 @@ class EmailService {
                     button: {
                         color: '#22BC66',
                         text: 'Recuperar senha',
-                        link: `http://localhost:5173/recuperar-senha/cliente/${resetToken}`
+                        link: `https://barperks.vercel.app/recuperar-senha/cliente/${resetToken}`
                     }
                 },
                 outro: 'Necessita de ajuda ou tem dúvidas? Basta responder a este e-mail. Teremos todo o gosto em ajudar.'
@@ -76,7 +76,7 @@ class EmailService {
             theme: 'default',
             product: {
                 name: 'Bar Perks',
-                link: `http://localhost:5173`
+                link: `https://barperks.vercel.app/`
             }
         });
         const email = {
@@ -88,7 +88,7 @@ class EmailService {
                     button: {
                         color: '#22BC66',
                         text: 'Recuperar senha',
-                        link: `http://localhost:5173/recuperar-senha/estabelecimento/${resetToken}`
+                        link: `https://barperks.vercel.app/recuperar-senha/estabelecimento/${resetToken}`
                     }
                 },
                 outro: 'Necessita de ajuda ou tem dúvidas? Basta responder a este e-mail. Teremos todo o gosto em ajudar.'

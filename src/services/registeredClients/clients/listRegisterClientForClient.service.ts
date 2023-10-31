@@ -26,11 +26,11 @@ export const listRegisterClientUniqueForClientService = async (data: iUniqueRegi
 		throw new AppError('Bar não encontrado', 404)
 	}
 
-	if(findPubName){
+	if(findPub){
 		const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOne({
 			where: {
 				pub: {
-					id: findPubName.id
+					id: findPub.id
 				},
 				client: {
 					id: clientId
@@ -71,7 +71,7 @@ export const listRegisterClientUniqueForClientService = async (data: iUniqueRegi
 	const findRegisteredClients: RegisteredClients | null = await registerClientRepository.findOne({
 		where: {
 			pub: {
-				id: findPub ? findPub.id : 0
+				id: findPubName ? findPubName.id : 0
 			},
 			client: {
 				id: clientId

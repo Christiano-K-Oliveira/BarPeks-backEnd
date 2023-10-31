@@ -24,18 +24,18 @@ const registeredClientsSchemaResponse = z.object({
     cpf: z.string().min(11).max(11),
     email: z.string().email().max(80),
     telephone: z.string().min(11).max(11),
-    points: z.string().max(6),
+    points: z.string().max(6).default("0"),
     link_qrcode: z.string().max(10).nullish(),
     old_points: z.string().max(6).nullish(),
     pub: z.object({
         id: z.number(),
         name: z.string(),
-        photo_url: z.string(),
+        photo_url: z.string().nullish(),
     }),
     client: z.object({
         id: z.number(),
         name: z.string(),
-        photo_url: z.string(),
+        photo_url: z.string().nullish(),
     })
 })
 

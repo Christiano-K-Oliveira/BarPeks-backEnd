@@ -5,7 +5,6 @@ import { AppError } from '../../errors';
 import { iPubRequest, iPubResponse } from '../../interfaces/pubs.interfaces';
 import { pubsSchemaResponse } from '../../schemas/pubs.schemas';
 
-
 export const createPubService = async (pubData: iPubRequest): Promise<iPubResponse> => {
     const pubRepository: Repository<Pub> = AppDataSource.getRepository(Pub);
     const checkEmailExist: Pub | null = await pubRepository.findOneBy({

@@ -3,6 +3,7 @@ import { Pub } from './pubs.entity'
 import { Product } from './products.entity'
 import { RescueHistory } from './rescueHistory.entity'
 import { RegisteredClients } from './registeredClients.entity'
+import { Plan } from './plans.entity'
 
 export {
     Client,
@@ -10,4 +11,5 @@ export {
     Product,
     RescueHistory,
     RegisteredClients,
+    Plan,
 }
