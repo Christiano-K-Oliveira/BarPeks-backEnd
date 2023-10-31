@@ -10,7 +10,7 @@ import { clientRescueHistoryRoutes, pubRescueHistoryRoutes } from "./routes/resc
 import cors from "cors"
 import swaggerUI from "swagger-ui-express"
 import swaggerDocument from '../swagger.json'
-
+import plansRoutes from "./routes/plans.routes";
 
 const app: Application = express();
 app.use(express.json());
@@ -25,6 +25,7 @@ app.use("/pub/registered-clients", pubRegisteredClientsRoutes)
 app.use("/client/registered-clients", clientRegisteredClientsRoutes)
 app.use("/pub/rescue-history", pubRescueHistoryRoutes)
 app.use("/client/rescue-history", clientRescueHistoryRoutes)
+app.use("/plans", plansRoutes)
 
 app.use(errorHandler);
 

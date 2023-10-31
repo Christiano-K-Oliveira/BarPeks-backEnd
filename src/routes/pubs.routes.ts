@@ -4,6 +4,11 @@ import { pubsSchemaRequest, pubsUpdateSchemaRequest } from "../schemas/pubs.sche
 import { createPubController, deletePubController, listPubUniqueController, resetPasswordController, sendEmailResetPasswordController, updatePubController, uploadPubController } from "../controllers/pubs.controllers";
 import ensureAuthIsValidMiddleware from "../middlewares/ensureAuthIsValid.middleware";
 import { ensurePubAccount } from "../middlewares/ensureAccount.middleware";
+import { Repository } from "typeorm";
+import { Plan } from "../entities";
+import { AppDataSource } from "../data-source";
+import { AppError } from "../errors";
+import { plansSchemaResponse } from "../schemas/plans.schemas";
 
 const upload = require('../middlewares/uploadPhoto.middleware')
 const pubsRoutes: Router = Router();
@@ -15,10 +20,52 @@ pubsRoutes.delete('/:id', ensureAuthIsValidMiddleware, ensurePubAccount, deleteP
 pubsRoutes.post('/recuperar-senha', sendEmailResetPasswordController)
 pubsRoutes.patch('/recuperar-senha/:token', resetPasswordController)
 pubsRoutes.patch('/upload/:id', (upload.single('file')), uploadPubController)
-pubsRoutes.post('/plan', (req: Request, res: Response) => {
+pubsRoutes.post('/plan', async (req: Request, res: Response): Promise<void> => {
     const data = req.body
+    const token = "APP_USR-541286837154157-101709-bf66b22aa6b728632b5fb5bc13190870-311362426"
 
-    console.log(data)
+    if(data.data.id){
+        await fetch(`https://api.mercadopago.com/v1/payments/${data.data.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(reponse => reponse.json())
+        .then(async (responseJson) => {
+
+            if(responseJson.status == "approved"){
+                const planRepository: Repository<Plan> = AppDataSource.getRepository(Plan);
+
+                const findPlan: Plan | null = await planRepository.findOne({
+                    where: {
+                        pub: {
+                            email: responseJson.additional_info.items[0].id
+                        }
+                    },
+                    relations: {
+                        pub: true
+                    }
+                });
+
+                if (!findPlan) {
+                    throw new AppError('Plano não encontrado', 404);
+                }
+
+                const newDataPlan = {
+                    ...findPlan,
+                    name: responseJson.description
+                };
+            
+                await planRepository.save(newDataPlan);
+                
+                const plan = plansSchemaResponse.parse(newDataPlan);
+                
+                return plan;
+            }
+        })
+        .catch(erro => console.log(erro))
+    }
 })
 
 export default pubsRoutes

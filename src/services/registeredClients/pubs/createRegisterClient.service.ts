@@ -18,10 +18,6 @@ export const createRegisterClientService = async (registerClientData: iRegistere
         email: registerClientData.email
     });
 
-    const findRegisterClient: RegisteredClients | null = await registerClientRepository.findOneBy({
-        cpf: registerClientData.cpf
-    })
-
     if (!pub) {
 		throw new AppError('Bar não encontrado', 404);
 	}
@@ -29,6 +25,19 @@ export const createRegisterClientService = async (registerClientData: iRegistere
     if (!client) {
 		throw new AppError('Cliente não encontrado', 404);
 	}
+
+    const findRegisterClient: RegisteredClients | null = await registerClientRepository.findOne({
+        where: {
+            cpf: registerClientData.cpf,
+            pub: {
+                id: pub.id
+            }
+        },
+        relations: {
+            client: true,
+            pub: true,
+        }
+    });
 
     if(findRegisterClient){
         throw new AppError('Cliente já registrado', 409)
