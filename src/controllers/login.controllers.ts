@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { loginPubService, loginSocialMediaPubService } from "../services/login/loginPub.service";
-import { loginClientService, loginSocialMediaClientService } from "../services/login/loginClient.service";
+import { loginPubService } from "../services/login/loginPub.service";
+import { loginClientService } from "../services/login/loginClient.service";
 
 const loginPubController = async (req: Request, res: Response): Promise<Response> => {
     const loginPub: string = await loginPubService(req.body)
@@ -18,20 +18,4 @@ const loginClientController = async (req: Request, res: Response): Promise<Respo
     })
 }
 
-const loginSocialMediaPubController = async(req: Request, res: Response): Promise<Response> => {
-    const loginPub: string = await loginSocialMediaPubService(req.body)
-
-    return res.status(200).json({
-        token: loginPub
-    })
-}
-
-const loginSocialMediaClientController = async(req: Request, res: Response): Promise<Response> => {
-    const loginClient: string = await loginSocialMediaClientService(req.body)
-
-    return res.status(200).json({
-        token: loginClient
-    })
-}
-
-export { loginPubController, loginClientController, loginSocialMediaClientController, loginSocialMediaPubController }
+export { loginPubController, loginClientController }

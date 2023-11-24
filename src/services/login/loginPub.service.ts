@@ -4,7 +4,7 @@ import { AppDataSource } from '../../data-source';
 import { Pub } from '../../entities';
 import { AppError } from '../../errors';
 import jwt from 'jsonwebtoken'
-import { iLogin, iLoginEmail } from '../../interfaces/login.interfaces';
+import { iLogin } from '../../interfaces/login.interfaces';
 
 export const loginPubService = async (loginData: iLogin): Promise<string> => {
     const pubRepository: Repository<Pub> = AppDataSource.getRepository(Pub);
@@ -38,35 +38,5 @@ export const loginPubService = async (loginData: iLogin): Promise<string> => {
             subject: String(findPub.id)
         }
     )
-    return token
-}
-
-export const loginSocialMediaPubService = async (loginData: iLoginEmail): Promise<string> => {
-    const pubRepository: Repository<Pub> = AppDataSource.getRepository(Pub);
-
-	const findPub: Pub | null = await pubRepository.findOne({
-        where: {
-            email: loginData.email
-        }
-    });
-
-    if (!findPub) {
-		throw new AppError('Bar não encontrado', 404);
-	}
-
-    const token = jwt.sign(
-        {           
-            id: findPub.id,
-            nome: findPub.name,
-            email: findPub.email,
-            photo_url: findPub.photo_url,
-        },
-        process.env.SECRET_KEY!,
-        {
-            expiresIn: '24h',
-            subject: String(findPub.id)
-        }
-    )
-    
     return token
 }

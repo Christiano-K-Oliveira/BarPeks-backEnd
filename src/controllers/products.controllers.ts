@@ -22,6 +22,13 @@ const listProductsController = async (req: Request, res: Response): Promise<Resp
 	return res.status(200).json(products);
 }
 
+const listProductsForClientController = async (req: Request, res: Response): Promise<Response> => {
+    const pubId = parseInt(req.params.id);
+	const products = await listProductsService(pubId);
+
+	return res.status(200).json(products);
+}
+
 const listProductUniqueController = async (req: Request, res: Response): Promise<Response> => {
 	const pubId: number = parseInt(req.params.id);
 	const products = await listProductUniqueService(pubId);
@@ -61,5 +68,6 @@ export {
     listProductUniqueController,
     updateProductController,
     deleteProductController,
-    uploadProductController
+    uploadProductController,
+    listProductsForClientController
 }

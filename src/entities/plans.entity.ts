@@ -15,7 +15,7 @@ class Plan {
     @UpdateDateColumn({ type: 'date' })
     updated_at: string;
 
-    @OneToOne(() =>  Pub)
+    @OneToOne(() =>  Pub, { onDelete: "CASCADE" })
     @JoinColumn()
 	pub: Pub;
 }
