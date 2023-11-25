@@ -1,9 +1,9 @@
 {
-  "name": "bar-backEnd",
+  "name": "BarPeks-backEnd",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:Christiano-K-Oliveira/bar-frontEnd.git",
-  "author": "Christiano-K-Oliveira <kayky.20oliveira@gmail.com>",
+  "repository": "git@github.com:Gutcha1/BarPeks-backEnd.git",
+  "author": "Gutcha1 <gustavo.barbalho@outlook.com>",
   "license": "MIT",
   "scripts": {
     "typeorm": "typeorm-ts-node-commonjs",
